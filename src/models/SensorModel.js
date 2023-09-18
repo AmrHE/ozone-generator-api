@@ -40,7 +40,7 @@ const sensorSchema = new mongoose.Schema({
 		{
 			type: [
 				{
-					createdAt: {
+					deviceTime: {
 						type: Date,
 						default: Date.now(),
 					},
@@ -49,30 +49,22 @@ const sensorSchema = new mongoose.Schema({
 						min: 0,
 						max: 100,
 					},
-					stDay: {
-						type: Number,
-						enum: [0, 1],
-					}, //today or tomorrow can only schedule 48
-					stHour: {
+					startHour: {
 						type: Number,
 						min: 0,
 						max: 23,
 					}, // start hour from 0 to 23
-					stMinute: {
+					startMinute: {
 						type: Number,
 						min: 0,
 						max: 59,
 					},
-					enDay: {
-						type: Number,
-						enum: [0, 1],
-					}, //today or tomorrow can only schedule 48
-					enHour: {
+					endHour: {
 						type: Number,
 						min: 0,
 						max: 23,
 					}, // start hour from 0 to 23
-					enMinute: {
+					endMinute: {
 						type: Number,
 						min: 0,
 						max: 59,
@@ -95,14 +87,10 @@ const sensorSchema = new mongoose.Schema({
 	settings: {
 		defaultTimezone: {
 			type: String,
-			required: [
-				true,
-				'Please provide a valid default timezone for the new device',
-			],
 		},
 
 		deviceTime: Number,
-		cycleRation: {
+		cycleRatio: {
 			type: Number,
 			default: 40,
 		},
@@ -139,13 +127,7 @@ const sensorSchema = new mongoose.Schema({
 		No2ppm: {
 			type: Number,
 		},
-		H2ppm: {
-			type: Number,
-		},
 		No2_alarm: {
-			type: Boolean,
-		},
-		H2_alarm: {
 			type: Boolean,
 		},
 	},
@@ -158,7 +140,6 @@ const sensorSchema = new mongoose.Schema({
 		command: {
 			type: Number,
 			enum: [0, 1],
-			required: [true, 'Device must be set to ON or OFF'],
 		},
 
 		createdAt: {
@@ -224,11 +205,11 @@ sensorSchema.post('save', async function (doc, next) {
 	next();
 });
 
-//Automatically populate the guide field in all querys using pre-find query middleware
-sensorSchema.pre(/^find/, function (next) {
-	this.populate('companies');
-	next();
-});
+// //Automatically populate the guide field in all querys using pre-find query middleware
+// sensorSchema.pre(/^find/, function (next) {
+// 	this.populate('companies');
+// 	next();
+// });
 
 //Static Instance Method
 //(Check if the password is correct or not)

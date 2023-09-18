@@ -10,29 +10,14 @@ export default async function handler(req, res) {
 	}
 
 	try {
-		let {
-			sensorName,
-			password,
-			passwordConfirm,
-			companies,
-			schedules,
-			settings,
-			commands,
-			events,
-			data,
-		} = req.body;
+		let { sensorName, password, passwordConfirm } = req.body;
 		await connectMongoDB();
 
 		const newSensor = await Sensor.create({
 			sensorName,
 			password,
 			passwordConfirm,
-			companies,
-			schedules,
-			settings,
-			commands,
-			events,
-			data,
+			companies: ['650894f27728f64ab7dca635'],
 		});
 
 		createAndSendToken(newSensor, 201, req, res);

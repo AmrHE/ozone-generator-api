@@ -36,10 +36,10 @@ export default async function handler(req, res) {
 
 						// next(new AppError('', 404));
 					} else {
-						const fullCompanyData = company.populate('sensors');
+						const fullCompanyData = await company.populate('sensors');
+
 						const devices = fullCompanyData?.sensors;
-						// console.log(devices);
-						res.status(200).send(devices);
+						res.status(200).send(devices); //TODO EDIT RESPONSE
 					}
 				} catch (error) {
 					console.log(error.message);

@@ -6,14 +6,10 @@ export default async function handler(req, res) {
 	await connectMongoDB();
 	console.log('!!DB CONNECTED SUCCCESSFULLY!!');
 
-	// console.log(req.query.companyId);
-
 	protectDeviceRoute(req, res)
 		.then(async (result) => {
 			console.log({ result });
 			if (result.statusCode === 401) {
-				// console.log({ result });
-				// console.log({ result: result.message });
 				res.status(401).send({
 					status: 'fail',
 					message: result.message,

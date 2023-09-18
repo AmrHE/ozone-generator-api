@@ -10,10 +10,7 @@ export default async function handler(req, res) {
 
 	protectDeviceRoute(req, res)
 		.then(async (result) => {
-			// console.log({ result });
 			if (result.statusCode === 401) {
-				// console.log({ result });
-				// console.log({ result: result.message });
 				res.status(401).send({
 					status: 'fail',
 					message: result.message,
@@ -23,8 +20,6 @@ export default async function handler(req, res) {
 					res.status(405).json({ message: 'Only PATCH requests are allowed.' });
 					return;
 				}
-
-				// if (req.query.companyId == result.company._id) {
 
 				console.log(req.body.schedule);
 				if (!req.body.schedule) {
@@ -41,16 +36,9 @@ export default async function handler(req, res) {
 						}
 					);
 
-					// console.log({ sensor });
-
 					if (!sensor) {
 						res.status(404).send('No document found with this ID');
-
-						// next(new AppError('', 404));
 					} else {
-						// const fullCompanyData = company.populate('sensors');
-						// const devices = fullCompanyData?.sensors;
-						// console.log(devices);
 						res.status(200).send({
 							status: 'success',
 							message: 'schedule updated successfully',

@@ -41,12 +41,12 @@ const protectClientRoutes = async (req, res) => {
 		process.env.JWT_SECRET
 	);
 
-	// console.log('ID: ', decodedPayload.id);
+	console.log('ID: ', decodedPayload.id);
 
 	// 3) Check if company still exists //(or has been deleted from DB after the JWT has created/issued)
 	const currentCompany = await Company.findById(decodedPayload.id);
 
-	// console.log({ currentCompany });
+	console.log({ currentCompany });
 
 	if (!currentCompany) {
 		return new AppError('The company does no longer exist', 401);

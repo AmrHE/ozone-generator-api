@@ -12,8 +12,6 @@ export default async function handler(req, res) {
 		.then(async (result) => {
 			// console.log({ result });
 			if (result.statusCode === 401) {
-				// console.log({ result });
-				// console.log({ result: result.message });
 				res.status(401).send({
 					status: 'fail',
 					message: result.message,
@@ -24,25 +22,23 @@ export default async function handler(req, res) {
 					return;
 				}
 
-				// if (req.query.companyId == result.company._id) {
-
 				try {
 					const settings = await Sensor.findById(req.query.sensorId).select(
 						'settings'
 					);
 
-					// console.log({ schedule });
-
 					if (!settings) {
 						res.status(404).send('No document found with this ID');
 					} else {
-						// const fullCompanyData = company.populate('sensors');
 						res.status(200).send({
 							status: 'success',
-							data: {
-								settings: settings.settings,
-								_id: settings._id,
-							},
+							defaultTimezone: settings.settings.defaultTimezone,
+							deviceTime: settings.settings.deviceTime,
+							cycleRation: settings.settings.cycleRation,
+							cycleTime: settings.settings.cycleTime,
+							No2AutoStop: settings.settings.No2AutoStop,
+							No2AutoStart: settings.settings.No2AutoStart,
+							_id: settings._id,
 						});
 					}
 				} catch (error) {
