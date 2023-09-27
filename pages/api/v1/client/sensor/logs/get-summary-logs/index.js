@@ -1,8 +1,8 @@
-import { connectMongoDB } from '../../../../../../../../src/libs/MongoConnect';
-import protectClientRoute from '../../../../../../../../src/utils/protectClientRoutes';
+import { connectMongoDB } from '../../../../../../../src/libs/MongoConnect';
+import protectClientRoute from '../../../../../../../src/utils/protectClientRoutes';
 
 // import protectClientRoute from '../../../src/utils'
-import EventLog from '../../../../../../../../src/models/EventLogModel';
+import SummaryLog from '../../../../../../../src/models/SummaryLogModel';
 
 export default async function handler(req, res) {
 	// res.status(201).send('Hi there !!!');
@@ -11,8 +11,8 @@ export default async function handler(req, res) {
 	protectClientRoute(req, res)
 		.then(async (result) => {
 			if (result.statusCode === 401) {
-				// console.log({ result });
-				// console.log({ result: result.message });
+				console.log({ result });
+				console.log({ result: result.message });
 				res.status(401).send({
 					status: 'fail',
 					message: result.message,
@@ -23,18 +23,16 @@ export default async function handler(req, res) {
 					return;
 				}
 
-				const { sensorId } = req.query;
-
 				try {
 					await connectMongoDB();
 
-					// console.log('!!DB CONNECTED SUCCCESSFULLY!!');
+					console.log('!!DB CONNECTED SUCCCESSFULLY!!');
 
-					const eventLogs = await EventLog.find({ sensor: sensorId });
+					const summaryLogs = await SummaryLog.find();
 
 					// Log.create({ log }).then((data) => {
-					console.log({ eventLogs });
-					res.status(200).send(eventLogs);
+					console.log(summaryLogs);
+					res.status(200).send(summaryLogs);
 					// });
 				} catch (error) {
 					console.log(error.message);

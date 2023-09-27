@@ -24,7 +24,7 @@ export default async function handler(req, res) {
 					return;
 				}
 
-				if (!req.body.command) {
+				if (req.body.command === undefined) {
 					//TODO: ADD THIS BODY AND QUERY HANDLER TO ALL THE CALLS
 					res.status(405).json({ message: 'Please Provide a valid command' });
 					return;

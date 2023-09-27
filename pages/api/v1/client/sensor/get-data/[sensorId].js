@@ -33,7 +33,7 @@ export default async function handler(req, res) {
 					// .sort({ createdAt: -1 })
 					// .limit(1);
 
-					// console.log({ data });
+					console.log({ data });
 
 					if (!data) {
 						res.status(404).send('No document found with this ID');
