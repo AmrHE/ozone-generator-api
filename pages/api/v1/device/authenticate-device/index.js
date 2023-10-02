@@ -1,3 +1,27 @@
+/**
+ * @swagger
+ * https://github.com/AmrHE/ozone-generator-api/api/v1/{device_Id}/authenticate-device:
+ *   post:
+ *     summary: Get a user by ID
+ *     parameters:
+ *       - in: path
+ *         name: device_Id
+ *     requestBody:
+ *      content:
+ *        multipart/form-data: # Media type
+ *          schema:            # Request payload
+ *            type: object
+ *            properties:      # Request parts
+ *              companyName:
+ *                type: string
+ *              password:
+ *                type: password
+ *     description: Returns the hello world
+ *     responses:
+ *       200:
+ *         description: hello world
+ */
+
 import { connectMongoDB } from '../../../../../src/libs/MongoConnect';
 import Sensor from '../../../../../src/models/SensorModel';
 // import AppError from '../../../../../src/utils/appError';
@@ -40,3 +64,35 @@ export default async function handler(req, res) {
 		res.status(400).send({ error, message: 'something went wrong!!' });
 	}
 }
+
+// /**
+//  * @swagger
+//  * https://github.com/AmrHE/ozone-generator-api/api/v1/{device_Id}/authenticate-device:
+//  *   post:
+//  *     summary: Get a user by ID
+//  *     parameters:
+//  *       - in: path
+//  *         name: device_Id
+//  *     requestBody:
+//  *      content:
+//  *        multipart/form-data: # Media type
+//  *          schema:            # Request payload
+//  *            type: object
+//  *            properties:      # Request parts
+//  *              id:            # Part 1 (string value)
+//  *                type: string
+//  *              address:       # Part2 (object)
+//  *                type: object
+//  *                properties:
+//  *                  street:
+//  *                    type: string
+//  *                  city:
+//  *                    type: string
+//  *              profileImage:  # Part 3 (an image)
+//  *                type: string
+//  *                format: binary
+//  *     description: Returns the hello world
+//  *     responses:
+//  *       200:
+//  *         description: hello world
+//  */
