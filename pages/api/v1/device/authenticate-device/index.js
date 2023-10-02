@@ -1,11 +1,8 @@
 /**
  * @swagger
- * /api/v1/{device_Id}/authenticate-device:
+ * /api/v1/authenticate-device:
  *   post:
  *     summary: Get a user by ID
- *     parameters:
- *       - in: path
- *         name: device_Id
  *     requestBody:
  *      content:
  *        multipart/form-data: # Media type
