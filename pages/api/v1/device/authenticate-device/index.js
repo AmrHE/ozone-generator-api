@@ -1,6 +1,6 @@
 /**
  * @swagger
- * https://github.com/AmrHE/ozone-generator-api/api/v1/{device_Id}/authenticate-device:
+ * /api/v1/{device_Id}/authenticate-device:
  *   post:
  *     summary: Get a user by ID
  *     parameters:
