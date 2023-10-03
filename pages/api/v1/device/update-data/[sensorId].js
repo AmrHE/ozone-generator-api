@@ -1,3 +1,49 @@
+/**
+ * @swagger
+ * \api\v1\device\update-data\{sensor_id}:
+ *   patch:
+ *     summary: Update sensor's data
+ *     parameters:
+ *       - in: path
+ *         name: sensor_id
+ *     tags:
+ *       - Device Endpoints
+ *     requestBody:
+ *      content:
+ *        application/json:
+ *          schema:            # Request payload
+ *            type: object
+ *            properties:      # Request parts
+ *              data:
+ *                type: object
+ *                properties:
+ *                  deviceTime:
+ *                    type: number
+ *                  temperature:
+ *                    type: number
+ *                  pressure:
+ *                    type: number
+ *                  gas:
+ *                    type: number
+ *                  No2ppm:
+ *                    type: number
+ *                  No2_alarm:
+ *                    type: boolean
+ *     description: Update sensor data
+ *     responses:
+ *      200:
+ *         description: Data updated successfully
+ *      400:
+ *         description: something went wrong!!.
+ *      401:
+ *         description: Please Provide a valid data
+ *      404:
+ *         description: No document found with this ID
+ *      405:
+ *         description: Only PATCH requests are allowed.
+ *
+ */
+
 import { connectMongoDB } from '../../../../../src/libs/MongoConnect';
 import Sensor from '../../../../../src/models/SensorModel';
 import protectDeviceRoute from '../../../../../src/utils/protectDeviceRoutes';
@@ -24,7 +70,7 @@ export default async function handler(req, res) {
 
 				if (!req.body.data) {
 					//TODO: ADD THIS BODY AND QUERY HANDLER TO ALL THE CALLS
-					res.status(405).json({ message: 'Please Provide a valid data' });
+					res.status(401).json({ message: 'Please Provide a valid data' });
 					return;
 				}
 

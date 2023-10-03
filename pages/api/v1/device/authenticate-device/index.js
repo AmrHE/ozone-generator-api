@@ -1,22 +1,31 @@
 /**
  * @swagger
- * /api/v1/authenticate-device:
+ * \api\v1\device\authenticate-device:
  *   post:
- *     summary: Get a user by ID
+ *     summary: Authenticate Sensor And Get Access Token
+ *     tags:
+ *       - Device Endpoints
  *     requestBody:
  *      content:
- *        multipart/form-data: # Media type
+ *        application/json:
  *          schema:            # Request payload
  *            type: object
  *            properties:      # Request parts
- *              companyName:
+ *              Username:
  *                type: string
- *              password:
- *                type: password
- *     description: Returns the hello world
+ *              Password:
+ *                type: string
+ *     description: Authenticates the device and returns the token and the device
  *     responses:
- *       200:
- *         description: hello world
+ *      200:
+ *         description: success
+ *      400:
+ *         description: something went wrong!!.
+ *      401:
+ *         description: Please provide your sensor name and password.
+ *      405:
+ *         description: Only POST requests are allowed.
+ *
  */
 
 import { connectMongoDB } from '../../../../../src/libs/MongoConnect';
@@ -33,7 +42,8 @@ export default async function handler(req, res) {
 
 	const { Username, Password } = req.body;
 
-	console.log();
+	console.log(req.body);
+	console.log({ Username, Password });
 
 	try {
 		await connectMongoDB();

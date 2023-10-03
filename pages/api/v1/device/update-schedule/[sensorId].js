@@ -1,3 +1,51 @@
+/**
+ * @swagger
+ * \api\v1\device\update-schedule\{sensor_id}:
+ *   patch:
+ *     summary: Update sensor's schedule
+ *     parameters:
+ *       - in: path
+ *         name: sensor_id
+ *     tags:
+ *       - Device Endpoints
+ *     requestBody:
+ *      content:
+ *        application/json:
+ *          schema:            # Request payload
+ *            type: object
+ *            properties:      # Request parts
+ *              schedule:
+ *                type: array
+ *                items:
+ *                  type: object
+ *                  properties:
+ *                    deviceTime:
+ *                      type: number
+ *                    cycleRatio:
+ *                      type: number
+ *                    startHour:
+ *                      type: number
+ *                    startMinute:
+ *                      type: number
+ *                    endHour:
+ *                      type: number
+ *                    endMinute:
+ *                      type: number
+ *     description: Update sensor data
+ *     responses:
+ *      200:
+ *         description: Data updated successfully
+ *      400:
+ *         description: something went wrong!!.
+ *      401:
+ *         description: Please Provide a valid data
+ *      404:
+ *         description: No document found with this ID
+ *      405:
+ *         description: Only PATCH requests are allowed.
+ *
+ */
+
 import { connectMongoDB } from '../../../../../src/libs/MongoConnect';
 import Sensor from '../../../../../src/models/SensorModel';
 import protectDeviceRoute from '../../../../../src/utils/protectDeviceRoutes';
@@ -48,16 +96,6 @@ export default async function handler(req, res) {
 					console.log(error.message);
 					res.status(400).send({ error, message: error.message });
 				}
-
-				//
-				//
-				//
-				//
-				//
-				// }
-
-				// 	res.status(400)
-				// 		.send({ message: 'You are not authorized to get this data' });
 			}
 		})
 		.catch((err) => {

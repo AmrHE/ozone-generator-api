@@ -51,7 +51,7 @@ const sensorSchema = new mongoose.Schema({
 					},
 					startHour: {
 						type: Number,
-						min: 0,
+						min: [0, 'Start hours cannot be less than 0'],
 						max: 23,
 					}, // start hour from 0 to 23
 					startMinute: {

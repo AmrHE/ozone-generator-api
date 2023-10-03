@@ -1,3 +1,41 @@
+/**
+ * @swagger
+ * \api\v1\device\update-event\{sensor_id}:
+ *   patch:
+ *     summary: Update sensor's Event
+ *     parameters:
+ *       - in: path
+ *         name: sensor_id
+ *     tags:
+ *       - Device Endpoints
+ *     requestBody:
+ *      content:
+ *        application/json:
+ *          schema:            # Request payload
+ *            type: object
+ *            properties:      # Request parts
+ *              events:
+ *                type: object
+ *                properties:
+ *                  deviceTime:
+ *                    type: number
+ *                  eventName:
+ *                    type: string
+ *     description: Update sensor Event Data
+ *     responses:
+ *      200:
+ *         description: Events updated successfully
+ *      400:
+ *         description: something went wrong!!.
+ *      401:
+ *         description: Please Provide a valid Event Data
+ *      404:
+ *         description: No document found with this ID
+ *      405:
+ *         description: Only PATCH requests are allowed.
+ *
+ */
+
 import { connectMongoDB } from '../../../../../src/libs/MongoConnect';
 import Sensor from '../../../../../src/models/SensorModel';
 import protectDeviceRoute from '../../../../../src/utils/protectDeviceRoutes';
@@ -22,7 +60,7 @@ export default async function handler(req, res) {
 
 				if (!req.body.events) {
 					//TODO: ADD THIS BODY AND QUERY HANDLER TO ALL THE CALLS
-					res.status(405).json({ message: 'Please Provide a valid events' });
+					res.status(401).json({ message: 'Please Provide a valid events' });
 					return;
 				}
 
