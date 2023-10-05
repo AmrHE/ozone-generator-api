@@ -1,3 +1,48 @@
+/**
+ * @swagger
+ * \api\v1\client\sensor\update-settings\{sensor_id}:
+ *   patch:
+ *     security:
+ *       - authorization: []
+ *     summary: Update sensor's configuration / settings
+ *     parameters:
+ *       - in: path
+ *         name: sensor_id
+ *     tags:
+ *       - Client Endpoints
+ *     requestBody:
+ *      content:
+ *        application/json:
+ *          schema:            # Request payload
+ *            type: object
+ *            properties:      # Request parts
+ *              settings:
+ *                type: object
+ *                properties:
+ *                  defaultTimezone:
+ *                    type: string
+ *                  deviceTime:
+ *                    type: number
+ *                  cycleRation:
+ *                    type: number
+ *                  cycleTime:
+ *                    type: number
+ *                  No2AutoStop:
+ *                    type: number
+ *                  No2AutoStart:
+ *                    type: number
+ *     description: Update sensor configuration / settings
+ *     responses:
+ *      200:
+ *         description: success
+ *      400:
+ *         description: something went wrong!!.
+ *      401:
+ *         description: Please Provide a valid settings
+ *      405:
+ *         description: Only PATCH requests are allowed.
+ *
+ */
 import { connectMongoDB } from '../../../../../../src/libs/MongoConnect';
 import Sensor from '../../../../../../src/models/SensorModel';
 import protectClientRoute from '../../../../../../src/utils/protectClientRoutes';

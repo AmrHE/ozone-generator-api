@@ -1,3 +1,28 @@
+/**
+ * @swagger
+ * \api\v1\client\company\get-devices\{company_id}:
+ *   get:
+ *     summary: Get sensor's configuration / Settings
+ *     parameters:
+ *       - in: path
+ *         name: company_id
+ *     tags:
+ *       - Client Endpoints
+ *     description: Get Company Sensors
+ *     responses:
+ *      200:
+ *         description: Success
+ *      400:
+ *         description: something went wrong!!.
+ *      401:
+ *         description: Unauthorized
+ *      404:
+ *         description: No document found with this ID
+ *      405:
+ *         description: Only GET requests are allowed.
+ *
+ */
+
 import { connectMongoDB } from '../../../../../../src/libs/MongoConnect';
 import Company from '../../../../../../src/models/CompanyModel';
 import Sensor from '../../../../../../src/models/SensorModel';
@@ -7,7 +32,7 @@ export default async function handler(req, res) {
 	await connectMongoDB();
 	console.log('!!DB CONNECTED SUCCCESSFULLY!!');
 
-	// console.log(req.query.companyId);
+	console.log(req.headers);
 
 	protectClientRoute(req, res)
 		.then(async (result) => {

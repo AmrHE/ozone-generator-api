@@ -1,3 +1,58 @@
+// *       - in: header
+// *         name: authorization
+// *         description: bearer token
+// *         type: http
+
+/**
+ * @swagger
+ * \api\v1\client\sensor\change-schedule\{sensor_id}:
+ *   patch:
+ *     security:
+ *       - authorization: []
+ *     summary: Update sensor's schedule
+ *     parameters:
+ *       - in: path
+ *         name: sensor_id
+ *     tags:
+ *       - Client Endpoints
+ *     requestBody:
+ *      content:
+ *        application/json:
+ *          schema:            # Request payload
+ *            type: object
+ *            properties:      # Request parts
+ *              schedule:
+ *                type: array
+ *                items:
+ *                  type: object
+ *                  properties:
+ *                    deviceTime:
+ *                      type: number
+ *                    cycleRatio:
+ *                      type: number
+ *                    startHour:
+ *                      type: number
+ *                    startMinute:
+ *                      type: number
+ *                    endHour:
+ *                      type: number
+ *                    endMinute:
+ *                      type: number
+ *     description: Update sensor Scheudle
+ *     responses:
+ *      200:
+ *         description: Data updated successfully
+ *      400:
+ *         description: something went wrong!!.
+ *      401:
+ *         description: Please Provide a valid data
+ *      404:
+ *         description: No document found with this ID
+ *      405:
+ *         description: Only PATCH requests are allowed.
+ *
+ */
+
 import { connectMongoDB } from '../../../../../../src/libs/MongoConnect';
 import Sensor from '../../../../../../src/models/SensorModel';
 import protectClientRoute from '../../../../../../src/utils/protectClientRoutes';
@@ -7,6 +62,8 @@ export default async function handler(req, res) {
 	console.log('!!DB CONNECTED SUCCCESSFULLY!!');
 
 	// console.log(req.query.companyId);
+
+	console.log(req.headers.authorization);
 
 	protectClientRoute(req, res)
 		.then(async (result) => {

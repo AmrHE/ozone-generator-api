@@ -1,3 +1,35 @@
+/**
+ * @swagger
+ * \api\v1\client\sensor\create:
+ *   post:
+ *     summary: Create new sensor / device
+ *     tags:
+ *       - Client Endpoints
+ *     requestBody:
+ *      content:
+ *        application/json:
+ *          schema:            # Request payload
+ *            type: object
+ *            properties:      # Request parts
+ *              username:
+ *                type: string
+ *              password:
+ *                type: string
+ *              passwordConfirm:
+ *                type: string
+ *     description: Create new sensor / device
+ *     responses:
+ *      200:
+ *         description: success
+ *      400:
+ *         description: something went wrong!!.
+ *      401:
+ *         description: Please Provide a valid settings
+ *      405:
+ *         description: Only PATCH requests are allowed.
+ *
+ */
+
 import { connectMongoDB } from '../../../../../../src/libs/MongoConnect';
 import { createAndSendToken } from '../../../../../../src/utils/createAndSendSensorJWT';
 import Sensor from '../../../../../../src/models/SensorModel';

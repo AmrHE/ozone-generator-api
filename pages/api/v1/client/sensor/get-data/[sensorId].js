@@ -1,3 +1,30 @@
+/**
+ * @swagger
+ * \api\v1\client\sensor\get-data\{sensor_id}:
+ *   get:
+ *     security:
+ *       - authorization: []
+ *     summary: Get sensor's Data
+ *     parameters:
+ *       - in: path
+ *         name: sensor_id
+ *     tags:
+ *       - Client Endpoints
+ *     description: Get sensor Data
+ *     responses:
+ *      200:
+ *         description: Success
+ *      400:
+ *         description: something went wrong!!.
+ *      401:
+ *         description: Unauthorized
+ *      404:
+ *         description: No document found with this ID
+ *      405:
+ *         description: Only GET requests are allowed.
+ *
+ */
+
 import { connectMongoDB } from '../../../../../../src/libs/MongoConnect';
 import Sensor from '../../../../../../src/models/SensorModel';
 import protectClientRoute from '../../../../../../src/utils/protectClientRoutes';

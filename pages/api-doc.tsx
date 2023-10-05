@@ -19,6 +19,21 @@ export const getStaticProps: GetStaticProps = async () => {
 				title: 'Ozone Generator API',
 				version: '1.0',
 			},
+			components: {
+				securitySchemes: {
+					authorization: {
+						type: 'http',
+						scheme: 'bearer',
+						bearerFormat: 'JWT',
+					},
+					// authorizationclient: {
+					// 	type: 'http',
+					// 	scheme: 'bearer',
+					// 	bearerFormat: 'JWT',
+					// },
+				},
+			},
+			security: [],
 		},
 	});
 

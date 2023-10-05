@@ -1,3 +1,33 @@
+/**
+ * @swagger
+ * \api\v1\client\company\authenticate-company:
+ *   post:
+ *     summary: Authenticate Sensor And Get Access Token
+ *     tags:
+ *       - Client Endpoints
+ *     requestBody:
+ *      content:
+ *        application/json:
+ *          schema:            # Request payload
+ *            type: object
+ *            properties:      # Request parts
+ *              companyName:
+ *                type: string
+ *              password:
+ *                type: string
+ *     description: Authenticates the device and returns the token and the device
+ *     responses:
+ *      200:
+ *         description: success
+ *      400:
+ *         description: something went wrong!!.
+ *      401:
+ *         description: Please provide your sensor name and password.
+ *      405:
+ *         description: Only POST requests are allowed.
+ *
+ */
+
 import { connectMongoDB } from '../../../../../../src/libs/MongoConnect';
 import Company from '../../../../../../src/models/CompanyModel';
 // import AppError from '../../../../../../src/utils/appError';
