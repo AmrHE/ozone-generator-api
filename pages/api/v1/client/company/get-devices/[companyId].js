@@ -2,7 +2,7 @@
  * @swagger
  * \api\v1\client\company\get-devices\{company_id}:
  *   get:
- *     summary: Get sensor's configuration / Settings
+ *     summary: Get All Devices/sensors
  *     parameters:
  *       - in: path
  *         name: company_id
