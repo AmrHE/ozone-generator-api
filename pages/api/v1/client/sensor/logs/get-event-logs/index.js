@@ -1,3 +1,27 @@
+/**
+ * @swagger
+ * \api\v1\client\sensor\logs\get-event-logs:
+ *   get:
+ *     security:
+ *       - authorization: []
+ *     summary: Get All Event logs
+ *     tags:
+ *       - Client Endpoints
+ *     description: Get All Event logs
+ *     responses:
+ *      200:
+ *         description: Success
+ *      400:
+ *         description: something went wrong!!.
+ *      401:
+ *         description: Unauthorized
+ *      404:
+ *         description: No document found with this ID
+ *      405:
+ *         description: Only GET requests are allowed.
+ *
+ */
+
 import { connectMongoDB } from '../../../../../../../src/libs/MongoConnect';
 import protectClientRoute from '../../../../../../../src/utils/protectClientRoutes';
 

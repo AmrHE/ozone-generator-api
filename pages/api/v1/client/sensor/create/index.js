@@ -2,6 +2,8 @@
  * @swagger
  * \api\v1\client\sensor\create:
  *   post:
+ *     security:
+ *       - authorization: []
  *     summary: Create new sensor / device
  *     tags:
  *       - Client Endpoints

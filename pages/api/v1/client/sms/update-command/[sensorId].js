@@ -1,3 +1,38 @@
+/**
+ * @swagger
+ * \api\v1\client\sms\update-command\{sensor_id}:
+ *   patch:
+ *     security:
+ *       - authorization: []
+ *     summary: Update sensor's command
+ *     parameters:
+ *       - in: path
+ *         name: sensor_id
+ *     tags:
+ *       - Client Endpoints
+ *     requestBody:
+ *      content:
+ *        application/json:
+ *          schema:            # Request payload
+ *            type: object
+ *            properties:      # Request parts
+ *              command:
+ *                type: number
+ *     description: Update sensor's command
+ *     responses:
+ *      200:
+ *         description: Data updated successfully
+ *      400:
+ *         description: something went wrong!!.
+ *      401:
+ *         description: Please Provide a valid data
+ *      404:
+ *         description: No document found with this ID
+ *      405:
+ *         description: Only PATCH requests are allowed.
+ *
+ */
+
 import { connectMongoDB } from '../../../../../../src/libs/MongoConnect';
 import Sensor from '../../../../../../src/models/SensorModel';
 import protectClientRoute from '../../../../../../src/utils/protectClientRoutes';
