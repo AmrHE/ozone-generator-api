@@ -13,7 +13,7 @@
  *          schema:            # Request payload
  *            type: object
  *            properties:      # Request parts
- *              username:
+ *              sensorName:
  *                type: string
  *              password:
  *                type: string
