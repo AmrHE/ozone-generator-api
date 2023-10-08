@@ -25,6 +25,10 @@
  *                      - off
  *                  temperature:
  *                    type: number
+ *                  compressor_pressure:
+ *                    type: number
+ *                  core_temperature:
+ *                    type: number
  *                  pressure:
  *                    type: number
  *                  gas:

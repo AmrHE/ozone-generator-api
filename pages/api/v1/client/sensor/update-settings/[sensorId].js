@@ -19,10 +19,6 @@
  *              settings:
  *                type: object
  *                properties:
- *                  defaultTimezone:
- *                    type: string
- *                  deviceTime:
- *                    type: number
  *                  cycleRation:
  *                    type: number
  *                  cycleTime:

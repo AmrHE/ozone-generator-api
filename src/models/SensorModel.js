@@ -136,6 +136,12 @@ const sensorSchema = new mongoose.Schema({
 		No2_alarm: {
 			type: Boolean,
 		},
+		compressor_pressure: {
+			type: Number,
+		},
+		core_temperature: {
+			type: Number,
+		},
 	},
 
 	events: {
