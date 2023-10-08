@@ -63,6 +63,15 @@ export default async function handler(req, res) {
 						}
 					);
 
+					const sensor2 = await Sensor.findByIdAndUpdate(
+						req.query.sensorId,
+						{ 'data.deviceStatus': 'off' },
+						{
+							new: true,
+							runValidators: true,
+						}
+					);
+
 					// console.log({ sensor });
 
 					if (!sensor) {

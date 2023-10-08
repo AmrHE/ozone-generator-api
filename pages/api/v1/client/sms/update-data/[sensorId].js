@@ -21,6 +21,10 @@
  *                properties:
  *                  deviceTime:
  *                    type: number
+ *                  deviceStatus:
+ *                    enum:
+ *                      - on
+ *                      - off
  *                  temperature:
  *                    type: number
  *                  pressure:
@@ -88,7 +92,25 @@ export default async function handler(req, res) {
 						}
 					);
 
-					// console.log({ sensor });
+					req.body.data.deviceStatus === 'on'
+						? await Sensor.findByIdAndUpdate(
+								req.query.sensorId,
+								{ 'commands.command': 1 },
+								{
+									new: true,
+									runValidators: true,
+								}
+						  )
+						: req.body.data.deviceStatus === 'off'
+						? await Sensor.findByIdAndUpdate(
+								req.query.sensorId,
+								{ 'commands.command': 0 },
+								{
+									new: true,
+									runValidators: true,
+								}
+						  )
+						: null;
 
 					if (!sensor) {
 						res.status(404).send('No document found with this ID');

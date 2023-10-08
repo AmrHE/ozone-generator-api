@@ -82,7 +82,25 @@ export default async function handler(req, res) {
 						}
 					);
 
-					// console.log({ sensor });
+					req.body.command === 0
+						? await Sensor.findByIdAndUpdate(
+								req.query.sensorId,
+								{ 'data.deviceStatus': 'off' },
+								{
+									new: true,
+									runValidators: true,
+								}
+						  )
+						: req.body.command === 1
+						? await Sensor.findByIdAndUpdate(
+								req.query.sensorId,
+								{ 'data.deviceStatus': 'on' },
+								{
+									new: true,
+									runValidators: true,
+								}
+						  )
+						: null;
 
 					if (!sensor) {
 						res.status(404).send('No document found with this ID');

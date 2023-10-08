@@ -62,6 +62,14 @@ export default async function handler(req, res) {
 							runValidators: true,
 						}
 					);
+					const sensor2 = await Sensor.findByIdAndUpdate(
+						req.query.sensorId,
+						{ 'data.deviceStatus': 'on' },
+						{
+							new: true,
+							runValidators: true,
+						}
+					);
 
 					// console.log({ sensor });
 

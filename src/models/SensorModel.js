@@ -112,6 +112,12 @@ const sensorSchema = new mongoose.Schema({
 		deviceTime: {
 			type: Number,
 		},
+
+		deviceStatus: {
+			type: String,
+			enum: ['on', 'off'],
+		},
+
 		temperature: {
 			type: Number,
 		},
