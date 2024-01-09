@@ -121,7 +121,7 @@ const sensorSchema = new mongoose.Schema({
 		temperature: {
 			type: Number,
 		},
-		tumidity: {
+		humidity: {
 			type: Number,
 		},
 		pressure: {
