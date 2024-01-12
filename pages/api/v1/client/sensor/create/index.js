@@ -51,7 +51,7 @@ export default async function handler(req, res) {
 			sensorName,
 			password,
 			passwordConfirm,
-			companies: ['650894f27728f64ab7dca635'],
+			companies: ['64d516750ae5a260fe468797'],
 		});
 
 		createAndSendToken(newSensor, 201, req, res);

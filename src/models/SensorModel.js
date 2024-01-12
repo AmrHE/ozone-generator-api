@@ -108,41 +108,43 @@ const sensorSchema = new mongoose.Schema({
 		},
 	},
 
-	data: {
-		deviceTime: {
-			type: Number,
-		},
+	// data: {
+	// 	deviceTime: {
+	// 		type: Number,
+	// 	},
 
-		deviceStatus: {
-			type: String,
-			enum: ['on', 'off'],
-		},
+	// 	deviceStatus: {
+	// 		type: String,
+	// 		enum: ['on', 'off'],
+	// 	},
 
-		temperature: {
-			type: Number,
-		},
-		humidity: {
-			type: Number,
-		},
-		pressure: {
-			type: Number,
-		},
-		gas: {
-			type: Number,
-		},
-		No2ppm: {
-			type: Number,
-		},
-		No2_alarm: {
-			type: Boolean,
-		},
-		compressor_pressure: {
-			type: Number,
-		},
-		core_temperature: {
-			type: Number,
-		},
-	},
+	// 	temperature: {
+	// 		type: Number,
+	// 	},
+	// 	humidity: {
+	// 		type: Number,
+	// 	},
+	// 	pressure: {
+	// 		type: Number,
+	// 	},
+	// 	gas: {
+	// 		type: Number,
+	// 	},
+	// 	No2ppm: {
+	// 		type: Number,
+	// 	},
+	// 	No2_alarm: {
+	// 		type: Boolean,
+	// 	},
+	// 	compressor_pressure: {
+	// 		type: Number,
+	// 	},
+	// 	core_temperature: {
+	// 		type: Number,
+	// 	},
+	// },
+
+	data: String,
 
 	events: {
 		type: Map,

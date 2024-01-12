@@ -54,9 +54,13 @@ export default async function handler(req, res) {
 				// if (req.query.companyId == result.company._id) {
 
 				try {
-					const data = await Sensor.findById(req.query.sensorId, {
-						data: { $slice: [0, 1] },
-					}).select('data');
+					const data = await Sensor.findById(
+						req.query.sensorId
+						// , {
+						// data: { $slice: [0, 1] },
+						// }
+					);
+					// .select('data');
 					// .sort({ createdAt: -1 })
 					// .limit(1);
 
@@ -68,7 +72,7 @@ export default async function handler(req, res) {
 						// const fullCompanyData = company.populate('sensors');
 						res.status(200).send({
 							status: 'success',
-							data: data.data,
+							data: JSON.parse(data.data),
 							sensor_id: data._id,
 							// data: data.data[data.data.length - 1], //TODO: WE CAN USE THE AGGREGGATION PIPELINES INSTEAD OF DOING IT MANUALLY
 						});

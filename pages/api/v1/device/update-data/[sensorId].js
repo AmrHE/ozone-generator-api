@@ -85,7 +85,7 @@ export default async function handler(req, res) {
 				try {
 					const sensor = await Sensor.findByIdAndUpdate(
 						req.query.sensorId,
-						{ data: req.body.data },
+						{ data: JSON.stringify(req.body.data) },
 						{
 							new: true,
 							runValidators: true,
